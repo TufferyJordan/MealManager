@@ -2,21 +2,20 @@
 buildscript {
     repositories {
         google()
-        jcenter()
         mavenCentral()
         maven { url = uri("https://jitpack.io") }
     }
 
     dependencies {
         classpath("com.android.tools.build:gradle:${Versions.gradleVersion}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.21")
     }
 }
 
 allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url = uri("https://jitpack.io") }
     }
 }

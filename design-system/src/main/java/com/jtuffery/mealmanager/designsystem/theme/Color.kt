@@ -1,4 +1,4 @@
-package com.jtuffery.mealmanager.ui.theme
+package com.jtuffery.mealmanager.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

@@ -3,32 +3,94 @@ package com.jtuffery.mealmanager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
+import androidx.annotation.MainThread
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
-import com.jtuffery.mealmanager.ui.theme.MealManagerTheme
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.jtuffery.mealmanager.designsystem.theme.MealManagerTheme
+import com.jtuffery.mealmanager.login.LoginScreen
+import com.jtuffery.mealmanager.navigation.NavIntent
+import com.jtuffery.mealmanager.navigation.Navigator
+import com.jtuffery.mealmanager.splash.SplashScreen
+import kotlinx.coroutines.flow.*
+import org.koin.androidx.compose.get
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MealManagerTheme {
-                Surface(
-                    color = Color.Green,
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .fillMaxWidth()
-                ) {
-                    Text(text = "Hello")
-                }
+                MainActivityScreen(this)
             }
         }
     }
 }
+
+@Composable
+fun MainActivityScreen(lifecycleOwner: LifecycleOwner) {
+    Scaffold (
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(
+                        text = "MealManager",
+                        style = MaterialTheme.typography.h4
+                    )
+                }
+            )
+        }
+    ){ innerPadding ->
+        val navController = rememberNavController()
+        val navigator = get<Navigator>()
+        navigator.navIntentFlow.observe(lifecycleOwner) {
+            navController.navigate(it.name)
+        }
+
+        MainActivityNavHost(
+            navController = navController,
+            modifier = Modifier.padding(innerPadding)
+        )
+    }
+}
+
+@Composable
+fun MainActivityNavHost(
+    navController: NavHostController,
+    modifier: Modifier = Modifier
+) {
+    NavHost(
+        navController = navController,
+        startDestination = NavIntent.Splash.name,
+        modifier = modifier
+    ) {
+        composable(NavIntent.Login.name) {
+            LoginScreen()
+        }
+        composable(NavIntent.Splash.name) {
+            SplashScreen()
+        }
+    }
+}
+
+@MainThread
+inline fun <T> Flow<T>.observe(
+    owner: LifecycleOwner,
+    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    crossinline collector: suspend (T) -> Unit
+) = flowWithLifecycle(owner.lifecycle, minActiveState)
+    .onEach { collector(it) }
+    .launchIn(owner.lifecycleScope)
