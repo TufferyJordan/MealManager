@@ -1,4 +1,5 @@
 object Libs {
+    val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerialization}"
     val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}"
 
     object AndroidX {
@@ -33,5 +34,18 @@ object Libs {
         object Navigation {
             val core = "androidx.navigation:navigation-compose:${Versions.Compose.Navigation.core}"
         }
+    }
+
+    object DataStore {
+        val preferences = "androidx.datastore:datastore-preferences:${Versions.DataStore.preferences}"
+    }
+
+    object Retrofit {
+        val retrofit = "com.squareup.retrofit2:retrofit:${Versions.Retrofit.retrofit}"
+        val serializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.Retrofit.serializationConverter}"
+    }
+
+    object OkHttp {
+        val okhttp = "com.squareup.okhttp3:okhttp:${Versions.OkHttp.okhttp}"
     }
 }

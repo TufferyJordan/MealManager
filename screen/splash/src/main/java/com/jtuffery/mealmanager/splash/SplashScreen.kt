@@ -43,9 +43,10 @@ fun SplashScreen(navigator: Navigator = get()) {
 @Composable
 fun SplashScreenLightPreview() {
     MealManagerTheme {
-        SplashScreen(object: Navigator {
+        SplashScreen(object : Navigator {
             override val navIntentFlow: Flow<NavIntent>
                 get() = MutableSharedFlow()
+
             override fun handle(navIntent: NavIntent) {}
         })
     }

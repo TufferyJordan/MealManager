@@ -2,7 +2,11 @@ include(":app")
 include(":core")
 include(":design-system")
 include(":network")
-include(":navigation")
+include(":persistance")
+include(":common")
 
 include(":screen:login")
 include(":screen:splash")
+
+include(":component:appinfos")
+include(":component:navigation")

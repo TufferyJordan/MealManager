@@ -2,6 +2,7 @@ plugins {
     id(Plugins.Id.androidApplication)
     kotlin(Plugins.Kotlin.android)
     kotlin(Plugins.Kotlin.androidExt)
+    kotlin(Plugins.Kotlin.kotlinxSerialization) version Versions.kotlinVersion
 }
 
 android {
@@ -61,9 +62,16 @@ dependencies {
     implementation(project(Modules.core))
     implementation(project(Modules.designSystem))
     implementation(project(Modules.network))
-    implementation(project(Modules.navigation))
+    implementation(project(Modules.common))
+    implementation(project(Modules.persistance))
+
     implementation(project(Modules.Screens.login))
     implementation(project(Modules.Screens.splash))
+
+    implementation(project(Modules.Component.appInfos))
+    implementation(project(Modules.Component.navigation))
+
+    implementation(Libs.serialization)
 
     implementation(Libs.Compose.toolingPreview)
     debugImplementation(Libs.Compose.toolingDebug )

@@ -5,6 +5,8 @@ object Plugins {
         const val androidLibrary = "com.android.library"
 
         const val defaultConfiguration = "default-configuration"
+        const val composeConfiguration = "compose-configuration"
+
     }
 
     // use kotlin()

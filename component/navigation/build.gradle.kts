@@ -1,6 +1,6 @@
 plugins {
     id(Plugins.Id.androidLibrary)
-    id(Plugins.Id.defaultConfiguration)
+    id(Plugins.Id.composeConfiguration)
 }
 
 dependencies {
@@ -8,7 +8,5 @@ dependencies {
     implementation(project(Modules.core))
 
     implementation(Libs.Compose.ui)
-    implementation(Libs.Compose.material)
     implementation(Libs.Compose.activity)
-
 }

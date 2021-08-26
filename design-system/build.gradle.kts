@@ -1,6 +1,6 @@
 plugins {
     id(Plugins.Id.androidLibrary)
-    id(Plugins.Id.defaultConfiguration)
+    id(Plugins.Id.composeConfiguration)
 }
 
 dependencies {

@@ -1,6 +1,6 @@
 plugins {
     id(Plugins.Id.androidLibrary)
-    id(Plugins.Id.defaultConfiguration)
+    id(Plugins.Id.composeConfiguration)
 }
 
 dependencies {
@@ -10,13 +10,18 @@ dependencies {
     implementation(Libs.AndroidX.Lifecycle.liveData)
     implementation(Libs.Google.material)
 
+    implementation(Libs.Koin.android)
+    implementation(Libs.Koin.core)
+    implementation(Libs.Koin.compose)
+
     implementation(Libs.Compose.ui)
     implementation(Libs.Compose.material)
     implementation(Libs.Compose.activity)
 
     implementation(project(Modules.core))
+    implementation(project(Modules.network))
     implementation(project(Modules.designSystem))
-    implementation(project(Modules.navigation))
+    implementation(project(Modules.Component.appInfos))
 
     implementation(Libs.Compose.toolingPreview)
     debugImplementation(Libs.Compose.toolingDebug)

@@ -17,6 +17,12 @@ gradlePlugin {
             implementationClass = "plugins.DefaultConfigurationPlugin"
         }
     }
+    plugins {
+        register("compose-configuration") {
+            id = "compose-configuration"
+            implementationClass = "plugins.ComposeConfigurationPlugin"
+        }
+    }
 }
 
 dependencies {

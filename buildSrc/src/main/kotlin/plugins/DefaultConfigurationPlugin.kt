@@ -58,15 +58,7 @@ class DefaultConfigurationPlugin : Plugin<Project> {
                     sourceCompatibility = JavaVersion.VERSION_1_8
                     targetCompatibility = JavaVersion.VERSION_1_8
                 }
-                composeOptions {
-                    kotlinCompilerExtensionVersion = Versions.Compose.coreVersion
-                }
-                buildFeatures.compose = true
-                packagingOptions {
-                    resources {
-                        excludes += "/META-INF/{AL2.0,LGPL2.1}"
-                    }
-                }
+
                 testOptions.unitTests.isIncludeAndroidResources = true
             }
         }

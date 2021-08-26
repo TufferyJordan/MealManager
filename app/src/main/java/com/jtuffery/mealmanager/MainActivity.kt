@@ -4,15 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.MainThread
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
@@ -42,7 +37,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainActivityScreen(lifecycleOwner: LifecycleOwner) {
-    Scaffold (
+    Scaffold(
         topBar = {
             TopAppBar(
                 title = {
@@ -53,13 +48,12 @@ fun MainActivityScreen(lifecycleOwner: LifecycleOwner) {
                 }
             )
         }
-    ){ innerPadding ->
+    ) { innerPadding ->
         val navController = rememberNavController()
         val navigator = get<Navigator>()
         navigator.navIntentFlow.observe(lifecycleOwner) {
             navController.navigate(it.name)
         }
-
         MainActivityNavHost(
             navController = navController,
             modifier = Modifier.padding(innerPadding)
