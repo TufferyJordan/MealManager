@@ -7,6 +7,7 @@ include(":common")
 
 include(":screen:login")
 include(":screen:splash")
+include(":screen:randomrecipes")
 
 include(":component:appinfos")
 include(":component:navigation")

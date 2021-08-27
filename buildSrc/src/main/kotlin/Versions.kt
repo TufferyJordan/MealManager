@@ -48,4 +48,8 @@ object Versions {
     object OkHttp {
         val okhttp = "4.9.0"
     }
+
+    object Coil {
+        val compose = "1.3.2"
+    }
 }

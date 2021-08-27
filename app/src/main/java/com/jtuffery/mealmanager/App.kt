@@ -1,8 +1,8 @@
 package com.jtuffery.mealmanager
 
 import android.app.Application
-import com.jtuffery.mealmanager.login.loginModules
 import com.jtuffery.mealmanager.network.networkModule
+import com.jtuffery.mealmanager.randomrecipes.randomRecipesModules
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
 import org.koin.android.ext.koin.androidContext
@@ -15,7 +15,7 @@ class App : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@App)
-            val screensModules = loginModules
+            val screensModules = randomRecipesModules
             modules(
                 mainModule +
                         networkModule +

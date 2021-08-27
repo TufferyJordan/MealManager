@@ -10,14 +10,19 @@ dependencies {
     implementation(Libs.AndroidX.Lifecycle.liveData)
     implementation(Libs.Google.material)
 
+    implementation(Libs.Koin.android)
+    implementation(Libs.Koin.core)
+    implementation(Libs.Koin.compose)
+
     implementation(Libs.Compose.ui)
     implementation(Libs.Compose.material)
     implementation(Libs.Compose.activity)
 
-    implementation(Libs.Coil.compose)
-
     implementation(project(Modules.core))
+    implementation(project(Modules.network))
+    implementation(project(Modules.designSystem))
+    implementation(project(Modules.Component.appInfos))
 
     implementation(Libs.Compose.toolingPreview)
-    debugImplementation(Libs.Compose.toolingDebug )
+    debugImplementation(Libs.Compose.toolingDebug)
 }

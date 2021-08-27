@@ -20,6 +20,7 @@ import com.jtuffery.mealmanager.designsystem.theme.MealManagerTheme
 import com.jtuffery.mealmanager.login.LoginScreen
 import com.jtuffery.mealmanager.navigation.NavIntent
 import com.jtuffery.mealmanager.navigation.Navigator
+import com.jtuffery.mealmanager.randomrecipes.RandomRecipesScreen
 import com.jtuffery.mealmanager.splash.SplashScreen
 import kotlinx.coroutines.flow.*
 import org.koin.androidx.compose.get
@@ -68,14 +69,11 @@ fun MainActivityNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = NavIntent.Splash.name,
+        startDestination = NavIntent.RandomRecipes.name,
         modifier = modifier
     ) {
-        composable(NavIntent.Login.name) {
-            LoginScreen()
-        }
-        composable(NavIntent.Splash.name) {
-            SplashScreen()
+        composable(NavIntent.RandomRecipes.name) {
+            RandomRecipesScreen()
         }
     }
 }

@@ -48,4 +48,8 @@ object Libs {
     object OkHttp {
         val okhttp = "com.squareup.okhttp3:okhttp:${Versions.OkHttp.okhttp}"
     }
+
+    object Coil {
+        val compose = "io.coil-kt:coil-compose:${Versions.Coil.compose}"
+    }
 }
