@@ -9,6 +9,7 @@ object Modules {
         val login = ":screen:login"
         val splash = ":screen:splash"
         val randomRecipes = ":screen:randomrecipes"
+        val recipeDetails = ":screen:recipedetails"
     }
     object Component {
         val appInfos = ":component:appinfos"

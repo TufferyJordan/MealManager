@@ -68,6 +68,7 @@ dependencies {
     implementation(project(Modules.Screens.login))
     implementation(project(Modules.Screens.splash))
     implementation(project(Modules.Screens.randomRecipes))
+    implementation(project(Modules.Screens.recipeDetails))
 
     implementation(project(Modules.Component.appInfos))
     implementation(project(Modules.Component.navigation))

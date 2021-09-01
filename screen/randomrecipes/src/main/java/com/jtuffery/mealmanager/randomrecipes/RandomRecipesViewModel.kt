@@ -1,24 +1,27 @@
 package com.jtuffery.mealmanager.randomrecipes
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jtuffery.mealmanager.core.randomrecipes.domain.usecase.RandomRecipesFlow
 import com.jtuffery.mealmanager.core.randomrecipes.domain.usecase.RefreshRandomRecipesUseCase
 import com.jtuffery.mealmanager.designsystem.reciperow.RecipeRowUiModel
+import com.jtuffery.mealmanager.navigation.NavIntent
+import com.jtuffery.mealmanager.navigation.Navigator
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
 class RandomRecipesViewModel(
     private val refreshRandomRecipesUseCase: RefreshRandomRecipesUseCase,
-    private val randomRecipesFlow: RandomRecipesFlow
-): ViewModel() {
-    val uim = randomRecipesFlow.map {  recipes ->
+    private val navigator: Navigator,
+    randomRecipesFlow: RandomRecipesFlow
+) : ViewModel() {
+    val uim = randomRecipesFlow.map { recipes ->
         RandomRecipesUiModel(
-            recipes.randomRecipeList.map { recipe ->
+            recipes.recipeList.map { recipe ->
                 RecipeRowUiModel(
                     recipe.id,
                     recipe.title,
+                    recipe.dishTypes.take(3),
                     recipe.imageUrl
                 )
             }
@@ -32,6 +35,6 @@ class RandomRecipesViewModel(
     }
 
     fun onItemClick(id: Int) {
-        Log.d("Random Recipe", "Click on item $id")
+        navigator.handle(NavIntent.RecipeDetails(id))
     }
 }

@@ -14,6 +14,8 @@ dependencies {
     implementation(Libs.Koin.core)
     implementation(Libs.Koin.compose)
 
+    implementation(Libs.Coil.compose)
+
     implementation(Libs.Compose.ui)
     implementation(Libs.Compose.material)
     implementation(Libs.Compose.activity)
@@ -22,7 +24,6 @@ dependencies {
     implementation(project(Modules.network))
     implementation(project(Modules.designSystem))
     implementation(project(Modules.Component.appInfos))
-    implementation(project(Modules.Component.navigation))
 
     implementation(Libs.Compose.toolingPreview)
     debugImplementation(Libs.Compose.toolingDebug)

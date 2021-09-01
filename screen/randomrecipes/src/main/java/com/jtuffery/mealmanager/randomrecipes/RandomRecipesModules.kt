@@ -6,7 +6,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val randomRecipesScreenModule = module {
-    viewModel { RandomRecipesViewModel(get(), get()) }
+    viewModel { RandomRecipesViewModel(get(), get(), get()) }
 }
 
 val randomRecipesModules = randomRecipesDataModule +

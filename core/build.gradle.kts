@@ -5,6 +5,7 @@ plugins {
 
 dependencies {
     implementation(Libs.coroutines)
+    implementation(Libs.coroutinesCore)
     implementation(Libs.serialization)
 
     implementation(Libs.Koin.core)

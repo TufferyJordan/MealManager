@@ -13,15 +13,16 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import com.jtuffery.mealmanager.designsystem.theme.MealManagerTheme
-import com.jtuffery.mealmanager.login.LoginScreen
 import com.jtuffery.mealmanager.navigation.NavIntent
 import com.jtuffery.mealmanager.navigation.Navigator
-import com.jtuffery.mealmanager.randomrecipes.RandomRecipesScreen
-import com.jtuffery.mealmanager.splash.SplashScreen
+import com.jtuffery.mealmanager.randomrecipes.RandomRecipesScreenWithViewModel
+import com.jtuffery.mealmanager.recipedetails.RecipeDetailsScreenWithViewModel
 import kotlinx.coroutines.flow.*
 import org.koin.androidx.compose.get
 
@@ -38,18 +39,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainActivityScreen(lifecycleOwner: LifecycleOwner) {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(
-                        text = "MealManager",
-                        style = MaterialTheme.typography.h4
-                    )
-                }
-            )
-        }
-    ) { innerPadding ->
+    Scaffold { innerPadding ->
         val navController = rememberNavController()
         val navigator = get<Navigator>()
         navigator.navIntentFlow.observe(lifecycleOwner) {
@@ -72,8 +62,17 @@ fun MainActivityNavHost(
         startDestination = NavIntent.RandomRecipes.name,
         modifier = modifier
     ) {
-        composable(NavIntent.RandomRecipes.name) {
-            RandomRecipesScreen()
+        composable(NavIntent.RandomRecipes.route) {
+            RandomRecipesScreenWithViewModel()
+        }
+        composable(
+            NavIntent.RecipeDetails.route,
+            arguments = listOf(
+                navArgument(NavIntent.RecipeDetails.idKey) { type = NavType.IntType }
+            )
+        ) { backStackEntry ->
+            val id = backStackEntry.arguments?.getInt(NavIntent.RecipeDetails.idKey)
+            id?.let { RecipeDetailsScreenWithViewModel(id = id) }
         }
     }
 }

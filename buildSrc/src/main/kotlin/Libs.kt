@@ -1,6 +1,7 @@
 object Libs {
     val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerialization}"
     val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}"
+    val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutinesVersion}"
 
     object AndroidX {
         val core = "androidx.core:core-ktx:${Versions.AndroidX.core}"

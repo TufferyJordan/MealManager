@@ -2,7 +2,7 @@ object Versions {
     val gradleVersion = "7.0.1"
     val kotlinVersion = "1.5.10"
     val kotlinSerialization = "1.2.2"
-    val coroutinesVersion = "1.3.9"
+    val coroutinesVersion = "1.5.1"
 
     object Android {
         val compileSdk = 31

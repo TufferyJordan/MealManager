@@ -1,18 +1,12 @@
 package com.jtuffery.mealmanager.randomrecipes
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,7 +16,7 @@ import com.jtuffery.mealmanager.designsystem.theme.MealManagerTheme
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun RandomRecipesScreen(
+fun RandomRecipesScreenWithViewModel(
     viewModel: RandomRecipesViewModel = getViewModel()
 ) {
     val uim by viewModel.uim.collectAsState(
@@ -30,14 +24,14 @@ fun RandomRecipesScreen(
             emptyList()
         )
     )
-    RandomRecipesList(
+    RandomRecipesScreen(
         onItemClick = viewModel::onItemClick,
         uim = uim
     )
 }
 
 @Composable
-fun RandomRecipesList(
+fun RandomRecipesScreen(
     onItemClick: (Int) -> Unit,
     uim: RandomRecipesUiModel
 ) {
@@ -57,7 +51,7 @@ fun RandomRecipesList(
 @Composable
 fun RandomRecipesScreenPreview() {
     MealManagerTheme {
-        RandomRecipesList(
+        RandomRecipesScreen(
             onItemClick = {},
             uim = generateMockRandomRecipes()
         )
@@ -68,7 +62,7 @@ fun RandomRecipesScreenPreview() {
 @Composable
 fun RandomRecipesScreenPreviewDark() {
     MealManagerTheme(true) {
-        RandomRecipesList(
+        RandomRecipesScreen(
             onItemClick = {},
             uim = generateMockRandomRecipes()
         )
